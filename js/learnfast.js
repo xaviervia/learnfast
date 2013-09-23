@@ -20,6 +20,47 @@ function LearnFast($scope, $http) {
     ];
   }
 
+  try {
+    $scope.supportedLanguages = JSON.parse(localStorage.supportedLanguages);
+  }
+  catch (err) {
+    $scope.supportedLanguages = {
+      "ru":"Russian",
+      "en":"English",
+      "pl":"Polish",
+      "hu":"Hungarian",
+      "uk":"Ukrainian",
+      "de":"German",
+      "fr":"French",
+      "be":"Belarusian",
+      "sq":"Albanian",
+      "es":"Spanish",
+      "it":"Italian",
+      "hy":"Armenian",
+      "da":"Danish",
+      "pt":"Portuguese",
+      "sk":"Slovak",
+      "sl":"Slovenian",
+      "nl":"Dutch",
+      "bg":"Bulgarian",
+      "ca":"Catalan",
+      "hr":"Croatian",
+      "cs":"Czech",
+      "el":"Greek",
+      "no":"Norwegian",
+      "mk":"Macedonian",
+      "sv":"Swedish",
+      "fi":"Finnish",
+      "et":"Estonian",
+      "lv":"Latvian",
+      "lt":"Lithuanian",
+      "tr":"Turkish",
+      "ro":"Romanian",
+      "sr":"Serbian",
+      "az":"Azerbaijani"
+    };
+  }
+
   $scope.start = function () {
     if ($scope.source.length == 0 && $scope.translated.length == 0) return;
 
@@ -95,6 +136,9 @@ function LearnFast($scope, $http) {
     $scope.translated = capture.translated;
     $scope.currentCapture = capture;
     $scope.capturing = false;
+    if (localStorage) {
+      localStorage.current = $scope.captures.indexOf(capture);
+    }
   }
 
   $scope.synced = true;
@@ -104,12 +148,17 @@ function LearnFast($scope, $http) {
       $scope.currentCapture.translated == $scope.translated;
   }
 
-  $scope.capturing = true;
-
   $scope.capture = function () {
     if (!$scope.started) {
       $scope.capturing = !$scope.capturing;
     }
+  }
+
+  try {
+    $scope.use($scope.captures[parseInt(localStorage.current)]);
+  }
+  catch (err) {
+    $scope.capturing = true;
   }
 
   if (localStorage) {
@@ -161,7 +210,13 @@ function LearnFast($scope, $http) {
   $scope.yandex = {
     getLangs: function () {
       $scope.$apply(function () {
-        $http.jsonp("https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=trnsl.1.1.20130923T044538Z.31636321d031f563.82efb864ff356303dec646bba4cc874a4b381127&ui=uk&callback=YandexGetLangsCallback");
+        $http.jsonp("https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=trnsl.1.1.20130923T044538Z.31636321d031f563.82efb864ff356303dec646bba4cc874a4b381127&ui=en&callback=YandexGetLangsCallback");
+      });
+    },
+
+    translate: function (text) {
+      $scope.$apply(function () {
+        $http.jsonp("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20130923T044538Z.31636321d031f563.82efb864ff356303dec646bba4cc874a4b381127&lang=en-ru&text=To+be,+or+not+to+be%3F&text=That+is+the+question.&callback=YandexTranslateCallback");
       });
     }
   }
@@ -170,4 +225,8 @@ function LearnFast($scope, $http) {
 function YandexGetLangsCallback(data) {
   ngScope.yandex.langs = data.langs;
   ngScope.yandex.dirs = data.dirs;
+}
+
+function YandexTranslateCallback(data) {
+  console.log(data);
 }

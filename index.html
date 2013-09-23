@@ -21,7 +21,7 @@
       <p class="output" data-ng-show="unevenText">The text in one side has different length than on the other side.</p>
 
       <form data-ng-submit="start()" data-ng-hide="started">
-        <h1>LearnFast</h1>
+        <h1>LearnFast <button></button></h1>
         <textarea 
           data-ng-model="source" 
           data-ng-change="textChanged()"
@@ -73,7 +73,7 @@
           <input type="file" id="file" name="file" accept="text/plain" data-ng-model="filePath" data-ng-change="fileAvailable()" />
           <button data-ng-show="fileEnabled" data-ng-hide="started" data-ng-click="capture()">
             <span data-ng-hide="capturing">
-              load
+              change
             </span>
             <span data-ng-show="capturing">
               cancel

@@ -39,6 +39,19 @@ h1 {
   padding: 0;
 }
 
+h1 button {
+  font-weight: 100;
+  background: transparent;
+  border: 0;
+  font-size: 2rem;
+}
+
+h1 button:hover {
+  background: transparent;
+  color: black;
+  border: 0; 
+}
+
 textarea {
   width: 34.8rem;
   margin-right: 1.2rem;
