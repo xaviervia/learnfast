@@ -24,10 +24,12 @@
         <h1>LearnFast</h1>
         <textarea 
           data-ng-model="source" 
+          data-ng-change="textChanged()"
           title="Original language" 
           placeholder="Enter some text in the language you want to learn"></textarea>
         <textarea 
           data-ng-model="translated" 
+          data-ng-change="textChanged()"
           title"Translated" 
           placeholder="Enter the same text in a language you understand"></textarea>
         <button 
@@ -76,6 +78,9 @@
             <span data-ng-show="capturing">
               cancel
             </span>
+          </button>
+          <button data-ng-hide="synced" data-ng-click="save()">
+            save
           </button>
           <span data-ng-hide="sure">
             <button data-ng-show="started" data-ng-click="quit()">

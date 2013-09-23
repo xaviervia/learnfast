@@ -1,20 +1,23 @@
 function LearnFast($scope, $http) {
   window.ngScope = $scope;
   try {
-    $scope.snippets = JSON.parse(localStorage.snippets);        
+    $scope.snippets = JSON.parse(localStorage.snippets);
   }
   catch (err) {
     $scope.snippets = [];
   }
 
-  $scope.example = {
-    source: "När de hade sagt adjö satt det åttiotvååriga födelsedagsbarnet stilla en lång stund och betraktade den vackra men betydelselösa australiensiska blomman som han ännu inte kände till namnet på. Sedan lyfte han blicken till väggen ovanför skrivbordet. Där hängde fyrtiotre pressade blommor inom glas och ram i fyra rader om tio blommor vardera och en oavslutad rad med fyra tavlor. I den översta raden saknades en tavla. Plats nummer nio gapade tom. Desert Snow skulle bli tavla nummer fyrtiofyra.",
-    translated: "When they had said goodbye sat the eighty-two-year birthday child still for a long moment, looking at the pretty but meaningless Australian flower that he still did not know the name of. Then he lifted his gaze to the wall above the desk. There hung forty-three pressed flowers in a glass frame in four rows of ten flowers each, and an unfinished series of four paintings. In the top row lacking a painting. Location number nine gaped empty. Desert Snow would be number forty-four board."
+  try {
+    $scope.captures = JSON.parse(localStorage.captures);
   }
-
-  $scope.showExample = function () {
-    $scope.source       = $scope.example.source;
-    $scope.translated   = $scope.example.translated;
+  catch (err) {
+    $scope.captures = [
+      {
+        name: "Sample",
+        source: "När de hade sagt adjö satt det åttiotvååriga födelsedagsbarnet stilla en lång stund och betraktade den vackra men betydelselösa australiensiska blomman som han ännu inte kände till namnet på. Sedan lyfte han blicken till väggen ovanför skrivbordet. Där hängde fyrtiotre pressade blommor inom glas och ram i fyra rader om tio blommor vardera och en oavslutad rad med fyra tavlor. I den översta raden saknades en tavla. Plats nummer nio gapade tom. Desert Snow skulle bli tavla nummer fyrtiofyra.",
+        translated: "When they had said goodbye sat the eighty-two-year birthday child still for a long moment, looking at the pretty but meaningless Australian flower that he still did not know the name of. Then he lifted his gaze to the wall above the desk. There hung forty-three pressed flowers in a glass frame in four rows of ten flowers each, and an unfinished series of four paintings. In the top row lacking a painting. Location number nine gaped empty. Desert Snow would be number forty-four board." 
+      }
+    ];
   }
 
   $scope.start = function () {
@@ -87,14 +90,6 @@ function LearnFast($scope, $http) {
     $scope.sure = false;
   }
 
-  $scope.captures = [
-    {
-      name: "Sample",
-      source: "När de hade sagt adjö satt det åttiotvååriga födelsedagsbarnet stilla en lång stund och betraktade den vackra men betydelselösa australiensiska blomman som han ännu inte kände till namnet på. Sedan lyfte han blicken till väggen ovanför skrivbordet. Där hängde fyrtiotre pressade blommor inom glas och ram i fyra rader om tio blommor vardera och en oavslutad rad med fyra tavlor. I den översta raden saknades en tavla. Plats nummer nio gapade tom. Desert Snow skulle bli tavla nummer fyrtiofyra.",
-      translated: "When they had said goodbye sat the eighty-two-year birthday child still for a long moment, looking at the pretty but meaningless Australian flower that he still did not know the name of. Then he lifted his gaze to the wall above the desk. There hung forty-three pressed flowers in a glass frame in four rows of ten flowers each, and an unfinished series of four paintings. In the top row lacking a painting. Location number nine gaped empty. Desert Snow would be number forty-four board." 
-    }
-  ];
-
   $scope.use = function (capture) {
     $scope.source = capture.source;
     $scope.translated = capture.translated;
@@ -102,11 +97,29 @@ function LearnFast($scope, $http) {
     $scope.capturing = false;
   }
 
+  $scope.synced = true;
+
+  $scope.textChanged = function () {
+    $scope.synced = $scope.currentCapture.source == $scope.source &&
+      $scope.currentCapture.translated == $scope.translated;
+  }
+
   $scope.capturing = true;
 
   $scope.capture = function () {
     if (!$scope.started) {
       $scope.capturing = !$scope.capturing;
+    }
+  }
+
+  if (localStorage) {
+    $scope.storage = true;
+
+    $scope.save = function () {
+      $scope.currentCapture.source = $scope.source;
+      $scope.currentCapture.translated = $scope.translated;
+      localStorage.captures = JSON.stringify($scope.captures);
+      $scope.synced = true;
     }
   }
 
@@ -122,6 +135,7 @@ function LearnFast($scope, $http) {
         translated: ""
       }
       $scope.captures.push(capture);
+      $scope.save();
       $scope.use(capture);
       $scope.$apply();
     }
