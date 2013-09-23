@@ -1,0 +1,295 @@
+html {
+  font-size: 15px;
+  line-height: 1.2rem;
+}
+
+body, input, textarea, button, select, table {
+  font: normal normal normal 1rem "Roboto Slab", sans-serif;
+  line-height: 1.2rem;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color:    rgba(0, 0, 0, .33);
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    rgba(0, 0, 0, .33);
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    rgba(0, 0, 0, .33);
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    rgba(0, 0, 0, .33);
+}
+
+body {
+  margin: 0 auto 5rem auto;
+}
+
+.inner {
+  margin: 0 auto;
+  width: 72rem;
+  padding-top: 2.5rem;      
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  margin: .35rem 0 1.55rem 0;
+  padding: 0;
+}
+
+textarea {
+  width: 34.8rem;
+  margin-right: 1.2rem;
+  margin-left: -.6rem;
+  display: block;
+  box-sizing: border-box;
+  padding: .6rem;
+  float: left;
+  height: 12rem;
+  border-top: 1px solid rgba(0,0,0,.5);
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid rgba(0,0,0,.5);
+  background: transparent;
+  margin-bottom: 1.2rem;
+}
+
+section {
+  width: 40rem;
+}
+
+button {
+  box-sizing: border-box;
+  background: transparent;
+  padding: .3rem .6rem;
+  margin: 0;
+  border: 1px solid rgba(0,0,0,.5);
+  cursor: pointer;
+  line-height: 1.2rem;
+}
+
+button + button {
+  margin-left: 1.2rem;
+}
+
+form > button {
+  margin-left: -.6rem;
+}
+
+p {
+  line-height: 1.2rem;
+  margin: 0 0 1.2rem 0;
+}
+
+textarea:hover, textarea:focus, button:focus, button:hover {
+  border-top: 1px solid black;      
+  border-bottom: 1px solid black;      
+  outline: none;
+}
+
+blockquote {
+  font-weight: 300;
+  margin: 1.2rem 0 0 0;
+  color: gray;
+}
+
+button:hover, button:focus {
+  background: black;
+  color: white;
+}
+
+form p {
+  font-size: .8rem;
+  line-height: 1.2rem;
+  font-weight: 300;
+  margin-top: 1.2rem;
+  width: 40rem;
+}
+
+form a {
+  font-weight: 300;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+footer {
+  background: black;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .inner {
+  margin: 0 auto;
+  padding: 0;
+}
+
+footer h1 {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  width: 36rem;
+  display: block;
+  float: left;
+  cursor: pointer;
+}
+
+footer aside {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+footer aside button {
+  font-size: .8rem;
+  font-weight: 300;
+  line-height: 2.4rem;
+  cursor: pointer;
+  color: white;
+  border-width: 0;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+footer aside button:hover, footer aside button:focus {
+  background: white;
+  border-width: 0;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  color: black;
+}
+
+footer input[type=file] {
+  display: none;
+}
+
+footer ul {
+  width: 25.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer ul li:last-child a {
+  border-bottom: 0;
+}
+
+footer ul li a {
+  border-bottom: 1px solid white;
+  box-sizing: border-box;
+  font-size: .8rem;
+  line-height: 2.35rem;
+  display: block;
+  cursor: pointer;
+  padding-left: .6rem;
+  margin-left: -.6rem;
+}
+
+footer ul li a:hover {
+  background: white;
+  color: black;
+}
+
+.grid {          
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" version="1.1"><rect style="fill:#ff6600;fill-opacity:1;" width="36" height="1" x="0" y="17" /><rect style="fill:#ff6600;fill-opacity:0.3;" width="36" height="1" x="0" y="2" /><rect style="fill:#ff6600;fill-opacity:1;" width="36" height="1" x="0" y="35" /><rect style="fill:#ff6600;fill-opacity:0.3;" width="36" height="1" x="0" y="20" /><rect style="fill:#ff6600;fill-opacity:1;stroke:none" width="1" height="36" x="0" y="0" /><rect style="fill:#ff6600;fill-opacity:1;stroke:none" width="1" height="36" x="18" y="0" /></svg>');
+}
+
+.clearfix {
+  clear: both;
+}
+
+@media screen and (min-width: 1080px) {
+  html {
+    font-size: 20px;
+  }
+
+  .inner {
+    width: 54rem;
+  }
+
+  textarea {
+    width: 25.8rem;
+  }
+  
+  footer h1 {
+    width: 27rem;
+  }
+
+  section {
+    width: 40rem;
+  }
+
+  .grid {          
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" version="1.1"><rect style="fill:#ff6600;fill-opacity:1;" width="48" height="1" x="0" y="23" /><rect style="fill:#ff6600;fill-opacity:0.3;" width="48" height="1" x="0" y="3" /><rect style="fill:#ff6600;fill-opacity:1;" width="48" height="1" x="0" y="47" /><rect style="fill:#ff6600;fill-opacity:0.3;" width="48" height="1" x="0" y="27" /><rect style="fill:#ff6600;fill-opacity:1;stroke:none" width="1" height="48" x="0" y="0" /><rect style="fill:#ff6600;fill-opacity:1;stroke:none" width="1" height="48" x="24" y="0" /></svg>');
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .inner {
+    width: 60rem;
+  }
+
+  textarea {
+    width: 28.8rem;
+  }
+
+  footer h1 {
+    width: 30rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .inner {
+    width: 48rem;
+  }
+
+  textarea, section {
+    width: 40rem;
+  }
+
+  form > button {
+    margin-top: 0rem;
+  }
+
+  footer h1 {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .inner {
+    width: 36rem;
+  }
+
+  textarea, section, form p  {
+    width: 36rem;
+  }
+
+  footer h1 {
+    width: 18rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .inner {
+    width: 24rem;
+  }
+
+  textarea, section, form p  {
+    width: 24rem;
+  }
+
+  footer h1 {
+    width: 12rem;
+  }
+
+  footer ul {
+    width: 24.6rem;
+  }
+}
